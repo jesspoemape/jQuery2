@@ -77,6 +77,24 @@ $(document).ready(function() {
         var task = this;
         advanceTask(task);
         this.id = "inProgress";
+        $("#currentList").append(this.outerHTML);
+    })
+
+// move inProgress items to archived 
+    $(document).on("click", "#inProgress", function(e) {
+        e.preventDefault();
+        var task = this;
+        task.id = "archived";
+        var changeIcon = task.outerHTML.replace("glyphicon-arrow-right", "glyphicon-remove");
+        advanceTask(task);
+        $("#archivedList").append(changeIcon);
+    })
+
+    // delete items from the list
+    $(document).on("click", "#archived", function(e) {
+        e.preventDefault();
+        var task = this;
+        advanceTask(task);
     })
 
     });
